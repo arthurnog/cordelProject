@@ -2,7 +2,7 @@ extends Node
 
 class_name MovementModule
 
-@export var speed: float = 15.0
+@export var speed: float = 350.0
 
 @export var body: CharacterBody2D
 

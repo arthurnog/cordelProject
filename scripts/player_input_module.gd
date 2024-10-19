@@ -13,6 +13,8 @@ const ATTACK_ACTION = "p_attack"
 
 const JUMP_BUFFER_DURATION: float = 0.5
 var jump_buffer_count = 0.0
+const ATACK_BUFFER_DURATION: float = 0.5
+var atack_buffer_count = 0.0
 
 
 func _process(delta: float) -> void:
@@ -42,5 +44,6 @@ func jump() -> void:
 # Use CombatModule
 func attack() -> void:
 	if(Input.is_action_just_pressed(ATTACK_ACTION)):
+		#
 		pass
 		## Call CombatModule attack action

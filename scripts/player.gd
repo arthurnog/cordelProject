@@ -4,3 +4,4 @@ class_name Player
 
 @export var input: PlayerInputModule
 @export var movement: MovementModule
+@export var sprite: Sprite2D

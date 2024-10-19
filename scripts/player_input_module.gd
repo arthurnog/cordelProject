@@ -16,17 +16,17 @@ var jump_buffer_count = 0.0
 
 
 func _process(delta: float) -> void:
-	move_horizontal()
+	move_horizontal(delta)
 	jump()
 	attack()
 
 # Use MovementModule
-func move_horizontal() -> void:
+func move_horizontal(delta: float) -> void:
 	var movement_input: Vector2 = Vector2(
 		Input.get_axis(LEFT_ACTION, RIGHT_ACTION),
 		Input.get_axis(UP_ACTION, DOWN_ACTION)
 	)
-	## Call MovementModule move function
+	player.movement.move(movement_input, delta)
 
 # Use MovementModule
 func jump() -> void:

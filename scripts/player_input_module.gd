@@ -16,24 +16,28 @@ var jump_buffer_count = 0.0
 
 
 func _process(delta: float) -> void:
-	move_horizontal()
+	move_horizontal(delta)
 	jump()
 	attack()
+	if(jump_buffer_count > 0.0):
+		jump_buffer_count -= delta
+		if(jump_buffer_count < 0.0): jump_buffer_count = 0.0
 
 # Use MovementModule
-func move_horizontal() -> void:
+func move_horizontal(delta: float) -> void:
 	var movement_input: Vector2 = Vector2(
 		Input.get_axis(LEFT_ACTION, RIGHT_ACTION),
 		Input.get_axis(UP_ACTION, DOWN_ACTION)
 	)
-	## Call MovementModule move function
+	player.movement.move(movement_input, delta)
 
 # Use MovementModule
 func jump() -> void:
-	# TODO: Use jump buffer when MovementModule ground checkage is ready
 	if(Input.is_action_just_pressed(JUMP_ACTION)):
-		pass
-		## Call MovementModule move function
+		jump_buffer_count = JUMP_BUFFER_DURATION
+	if(jump_buffer_count > 0.0 and player.movement.can_jump):
+		player.movement.jump()
+		jump_buffer_count = 0.0
 
 # Use CombatModule
 func attack() -> void:

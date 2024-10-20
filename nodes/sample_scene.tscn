@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo0ql0uvk4hx5"]
+[gd_scene load_steps=3 format=3 uid="uid://bp34f38r466wy"]
 
 [ext_resource type="PackedScene" uid="uid://4d4jryd0fdo1" path="res://nodes/player.tscn" id="1_y2a1n"]
-[ext_resource type="PackedScene" uid="uid://chi25qf3miqv8" path="res://nodes/minion.tscn" id="2_pcboj"]
+[ext_resource type="PackedScene" uid="uid://cakufept1yojf" path="res://nodes/minion.tscn" id="2_pcboj"]
 
 [node name="SampleScene" type="Node2D"]
 
@@ -9,3 +9,9 @@
 
 [node name="Minion" parent="." instance=ExtResource("2_pcboj")]
 position = Vector2(239, 112)
+
+[node name="Minion2" parent="." instance=ExtResource("2_pcboj")]
+position = Vector2(445, 186)
+
+[node name="Minion3" parent="." instance=ExtResource("2_pcboj")]
+position = Vector2(719, 370)

@@ -12,8 +12,9 @@ func _ready() -> void:
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.transition.connect(change_state)
-	current_state = initial_state
-	current_state.start()
+	if initial_state:
+		current_state = initial_state
+		current_state.start()
 
 func _process(delta: float) -> void:
 	if current_state:

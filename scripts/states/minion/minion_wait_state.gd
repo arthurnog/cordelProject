@@ -7,6 +7,7 @@ class_name MinionWaitState
 func start() -> void:
 	get_tree().create_timer(5.0).timeout.connect(timer_end)
 	body.movement.move(Vector2.ZERO, 0.0) # Reset body velocity
+	body.animator.play("player_idle")
 
 func update(delta: float) -> void:
 	var distance_to_player = (body.position - body.player.position).length()

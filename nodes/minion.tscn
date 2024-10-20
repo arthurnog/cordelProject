@@ -1,33 +1,125 @@
-[gd_scene load_steps=8 format=3 uid="uid://cakufept1yojf"]
+[gd_scene load_steps=20 format=3 uid="uid://cakufept1yojf"]
 
-[ext_resource type="Texture2D" uid="uid://dwi30xlufrnt0" path="res://icon.svg" id="1_acvuv"]
 [ext_resource type="Script" path="res://scripts/minion.gd" id="1_w5m6e"]
 [ext_resource type="Script" path="res://scripts/movement_module.gd" id="2_iucp4"]
+[ext_resource type="Texture2D" uid="uid://bdjnqudpkd8ib" path="res://assets/mc/mc_idle.png" id="2_phcvq"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="5_57nh2"]
 [ext_resource type="Script" path="res://scripts/states/minion/minion_idle_state.gd" id="5_uq27w"]
 [ext_resource type="Script" path="res://scripts/states/minion/minion_wait_state.gd" id="6_fon8q"]
+[ext_resource type="Texture2D" uid="uid://7qcrgn64sktm" path="res://assets/mc/mc_j0.png" id="7_gol6g"]
+[ext_resource type="Texture2D" uid="uid://c5xdfqw7p7xp1" path="res://assets/mc/mc_j1.png" id="8_qh1j0"]
+[ext_resource type="Texture2D" uid="uid://dcavx2rjtpf2n" path="res://assets/mc/mc_w0.png" id="9_3dvlm"]
+[ext_resource type="Texture2D" uid="uid://chf6w7h5cuoo1" path="res://assets/mc/mc_w1.png" id="10_bu3dh"]
+[ext_resource type="Texture2D" uid="uid://dvrhwux1kaec5" path="res://assets/mc/mc_w2.png" id="11_1kql2"]
+[ext_resource type="Texture2D" uid="uid://co5mju380n27v" path="res://assets/mc/mc_w3.png" id="12_2lrow"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhg8m"]
-height = 130.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fw0ie"]
+radius = 38.0
+height = 214.0
 
-[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2pkfs"]
+radius = 21.0
+height = 124.0
+
+[sub_resource type="Animation" id="Animation_k0f4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_phcvq")]
+}
+
+[sub_resource type="Animation" id="Animation_lcnj7"]
+resource_name = "player_idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_phcvq"), ExtResource("7_gol6g")]
+}
+
+[sub_resource type="Animation" id="Animation_1unx3"]
+resource_name = "player_jump"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_gol6g"), ExtResource("8_qh1j0")]
+}
+
+[sub_resource type="Animation" id="Animation_qw3jb"]
+resource_name = "player_walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_3dvlm"), ExtResource("10_bu3dh"), ExtResource("11_1kql2"), ExtResource("12_2lrow")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dohus"]
+_data = {
+"RESET": SubResource("Animation_k0f4g"),
+"player_idle": SubResource("Animation_lcnj7"),
+"player_jump": SubResource("Animation_1unx3"),
+"player_walk": SubResource("Animation_qw3jb")
+}
+
+[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement", "animator")]
 motion_mode = 1
 script = ExtResource("1_w5m6e")
 movement = NodePath("MovementModule")
+animator = NodePath("AnimationPlayer")
 
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0.835294, 0.756863, 0.356863, 1)
-texture = ExtResource("1_acvuv")
+[node name="Body" type="Area2D" parent="."]
+modulate = Color(0, 0.851607, 0.75507, 1)
+collision_layer = 4
+collision_mask = 64
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_phcvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(-16, -5)
+shape = SubResource("CapsuleShape2D_fw0ie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 56)
+position = Vector2(-15, 91)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_bhg8m")
+shape = SubResource("CapsuleShape2D_2pkfs")
 
 [node name="MovementModule" type="Node" parent="." node_paths=PackedStringArray("source", "body")]
 script = ExtResource("2_iucp4")
 source = NodePath("..")
-body = NodePath("../Icon")
+body = NodePath("../Body")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_57nh2")
@@ -38,3 +130,8 @@ script = ExtResource("5_uq27w")
 
 [node name="Wait" type="Node" parent="StateMachine"]
 script = ExtResource("6_fon8q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dohus")
+}

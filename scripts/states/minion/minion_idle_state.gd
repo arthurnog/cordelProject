@@ -13,13 +13,10 @@ func start() -> void:
 func update(delta: float) -> void:
 	var difference = target_position - body.global_position
 	var distance = difference.length()
+	direction = difference.normalized()
+	
 	if distance < 5.0:
-		calculate_target_position()
-	var angle = direction.angle_to(difference)
-	direction = Vector2(
-		lerpf(direction.x, difference.normalized().x, delta),
-		lerpf(direction.y, difference.normalized().y, delta)
-	)
+		transition.emit(self, "wait")
 
 func physics_update(delta: float) -> void:
 	body.movement.move(direction, delta)

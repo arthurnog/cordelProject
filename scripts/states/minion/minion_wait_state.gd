@@ -8,5 +8,11 @@ func start() -> void:
 	get_tree().create_timer(5.0).timeout.connect(timer_end)
 	body.movement.move(Vector2.ZERO, 0.0) # Reset body velocity
 
+func update(delta: float) -> void:
+	var distance_to_player = (body.position - body.player.position).length()
+	
+	if distance_to_player < body.minimum_distance_to_player:
+		transition.emit(self, "idle") # TODO: Replace with attack state
+
 func timer_end() -> void:
 	transition.emit(self, "idle")

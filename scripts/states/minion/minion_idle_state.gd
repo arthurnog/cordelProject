@@ -14,8 +14,8 @@ func update(delta: float) -> void:
 	var difference = target_position - body.global_position
 	var distance = difference.length()
 	direction = difference.normalized()
-	
-	if distance < 5.0:
+	var distance_to_player = body.player.position - body.position
+	if distance_to_player <= body.minimum_distance_to_player or distance < 5.0:
 		transition.emit(self, "wait")
 
 func physics_update(delta: float) -> void:

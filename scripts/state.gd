@@ -4,7 +4,7 @@ class_name State
 
 signal transition(caller: State, new_state: StringName)
 
-func start() ->  void:
+func start() -> void:
 	pass
 
 func update(delta: float) -> void:

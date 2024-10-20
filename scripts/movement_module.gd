@@ -29,6 +29,7 @@ func jump():
 
 func _process(delta: float) -> void:
 	sprite.position.y = -height
+	body.z_index = body.position.y
 
 func _physics_process(delta: float) -> void:
 	body.move_and_slide()

@@ -2,9 +2,8 @@ extends Node
 
 class_name MovementModule
 
-@export_category("Nodes")
-@export var body: CharacterBody2D
-@export var sprite: Sprite2D
+@export var source: CharacterBody2D
+@export var body: Node2D
 
 @export_category("Horizontal Movement")
 @export var speed: float = 350.0
@@ -22,16 +21,19 @@ var height: float = 0.0
 var velocity_h: float = 0.0
 
 func move(direction: Vector2, delta: float) -> void:
-	body.velocity = direction * delta * speed * 25
+	source.velocity = direction * delta * speed * 25
 
 func jump():
 	velocity_h = jump_force
 
+func _ready() -> void:
+	pass
+
 func _process(delta: float) -> void:
-	sprite.position.y = -height
+	body.position.y = -height
 
 func _physics_process(delta: float) -> void:
-	body.move_and_slide()
+	source.move_and_slide()
 	height += velocity_h * delta
 	if velocity_h > 0:
 		velocity_h -= gravity * delta

@@ -13,6 +13,8 @@ radius = 9.0
 height = 128.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input", "movement", "body")]
+collision_layer = 2
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_4sihv")
 input = NodePath("PlayerInputModule")
@@ -20,6 +22,8 @@ movement = NodePath("MovementModule")
 body = NodePath("Body")
 
 [node name="Body" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 64
 
 [node name="Sprite" type="Sprite2D" parent="Body"]
 texture = ExtResource("1_q0jb4")

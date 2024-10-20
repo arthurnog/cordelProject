@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://deho83v3wm77q"]
+[gd_scene load_steps=8 format=3 uid="uid://cakufept1yojf"]
 
 [ext_resource type="Texture2D" uid="uid://dwi30xlufrnt0" path="res://icon.svg" id="1_acvuv"]
 [ext_resource type="Script" path="res://scripts/minion.gd" id="1_w5m6e"]
@@ -24,10 +24,10 @@ position = Vector2(0, 56)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bhg8m")
 
-[node name="MovementModule" type="Node" parent="." node_paths=PackedStringArray("body", "sprite")]
+[node name="MovementModule" type="Node" parent="." node_paths=PackedStringArray("source", "body")]
 script = ExtResource("2_iucp4")
-body = NodePath("..")
-sprite = NodePath("../Icon")
+source = NodePath("..")
+body = NodePath("../Icon")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_57nh2")

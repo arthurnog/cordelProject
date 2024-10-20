@@ -10,11 +10,12 @@
 radius = 9.0
 height = 128.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input", "movement", "sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input", "movement", "combat", "sprite")]
 motion_mode = 1
 script = ExtResource("1_4sihv")
 input = NodePath("PlayerInputModule")
 movement = NodePath("MovementModule")
+combat = NodePath("CombatModule")
 sprite = NodePath("Icon")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -32,9 +33,15 @@ script = ExtResource("2_dt7ye")
 script = ExtResource("3_52sbg")
 body = NodePath("..")
 sprite = NodePath("../Icon")
-state = null
 
-[node name="CombatModule" type="Node" parent="." node_paths=PackedStringArray("body", "sprite")]
+[node name="CombatModule" type="Node" parent="." node_paths=PackedStringArray("body", "sprite", "attack_timer")]
 script = ExtResource("5_c6878")
 body = NodePath("..")
 sprite = NodePath("../Icon")
+attack_timer = NodePath("AttackTimer")
+
+[node name="AttackTimer" type="Timer" parent="CombatModule"]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="CombatModule/AttackTimer" to="CombatModule" method="_on_attack_timer_timeout"]

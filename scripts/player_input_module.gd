@@ -13,14 +13,11 @@ const ATTACK_ACTION = "p_attack"
 
 const JUMP_BUFFER_DURATION: float = 0.5
 var jump_buffer_count = 0.0
-const ATACK_BUFFER_DURATION: float = 0.5
-var atack_buffer_count = 0.0
-
 
 func _process(delta: float) -> void:
 	move_horizontal(delta)
+	basic_attack()
 	jump()
-	attack()
 	if(jump_buffer_count > 0.0):
 		jump_buffer_count -= delta
 		if(jump_buffer_count < 0.0): jump_buffer_count = 0.0
@@ -42,8 +39,9 @@ func jump() -> void:
 		jump_buffer_count = 0.0
 
 # Use CombatModule
-func attack() -> void:
+func basic_attack() -> void:
 	if(Input.is_action_just_pressed(ATTACK_ACTION)):
-		#
-		pass
-		## Call CombatModule attack action
+	# 	attack_buffer_count = ATTACK_BUFFER_DURATION
+	# if(attack_buffer_count > 0.0 and player.combat.can_attack):
+	# 	print_debug(attack_buffer_count)
+		player.combat.basic_attack()

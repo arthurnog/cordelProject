@@ -31,6 +31,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	body.position.y = -height
+	player.z_index = body.position.y
 
 func _physics_process(delta: float) -> void:
 	source.move_and_slide()

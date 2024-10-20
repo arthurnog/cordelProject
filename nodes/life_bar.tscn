@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxde5vimhj2ug"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed6we"]
+bg_color = Color(0.0941176, 0.00392157, 0.0156863, 0.815686)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0jog"]
+bg_color = Color(4.86121e-06, 0.736996, 0.350763, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+
+[node name="LifeBar" type="ProgressBar"]
+offset_right = 582.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_ed6we")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h0jog")
+value = 50.0
+show_percentage = false

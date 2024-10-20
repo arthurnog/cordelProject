@@ -93,11 +93,12 @@ _data = {
 "player_walk": SubResource("Animation_qw3jb")
 }
 
-[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement", "animator")]
+[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement", "animator", "sprite")]
 motion_mode = 1
 script = ExtResource("1_w5m6e")
 movement = NodePath("MovementModule")
 animator = NodePath("AnimationPlayer")
+sprite = NodePath("Body/Sprite")
 
 [node name="Body" type="Area2D" parent="."]
 modulate = Color(0, 0.851607, 0.75507, 1)

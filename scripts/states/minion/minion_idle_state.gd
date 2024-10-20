@@ -9,6 +9,7 @@ var direction: Vector2 = Vector2.ZERO
 
 func start() -> void:
 	calculate_target_position()
+	body.animator.play("player_walk")
 
 func update(delta: float) -> void:
 	var difference = target_position - body.global_position
@@ -17,6 +18,10 @@ func update(delta: float) -> void:
 	var distance_to_player = (body.player.position - body.position).length()
 	if distance_to_player <= body.minimum_distance_to_player or distance < 5.0:
 		transition.emit(self, "wait")
+	if direction.x != 0:
+		var flip = direction.x < 0
+		body.sprite.flip_h = flip
+		body.sprite.position.x = Player.FLIPPED_SPRITE_X_OFFSET * int(flip)
 
 func physics_update(delta: float) -> void:
 	body.movement.move(direction, delta)

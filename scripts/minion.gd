@@ -6,5 +6,6 @@ class_name Minion
 
 @export var minimum_distance_to_player: float = 10.0
 @export var animator: AnimationPlayer
+@export var sprite: Sprite2D
 
 @onready var player: Player = get_parent().get_node("Player")

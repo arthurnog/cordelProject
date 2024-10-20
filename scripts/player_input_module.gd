@@ -30,7 +30,10 @@ func move_horizontal(delta: float) -> void:
 		Input.get_axis(UP_ACTION, DOWN_ACTION)
 	)
 	player.movement.move(movement_input, delta)
-	if movement_input.x != 0: player.sprite.flip_h = movement_input.x < 0
+	if movement_input.x != 0:
+		var flip: bool = movement_input.x < 0 
+		player.sprite.flip_h = flip
+		player.sprite.position.x = Player.FLIPPED_SPRITE_X_OFFSET * int(flip)
 
 # Use MovementModule
 func jump() -> void:

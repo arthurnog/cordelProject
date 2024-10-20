@@ -1,19 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://deho83v3wm77q"]
+[gd_scene load_steps=6 format=3 uid="uid://deho83v3wm77q"]
 
 [ext_resource type="Texture2D" uid="uid://dwi30xlufrnt0" path="res://icon.svg" id="1_acvuv"]
 [ext_resource type="Script" path="res://scripts/minion.gd" id="1_w5m6e"]
 [ext_resource type="Script" path="res://scripts/movement_module.gd" id="2_iucp4"]
-[ext_resource type="Script" path="res://scripts/enemy_navigation_module.gd" id="3_pk43u"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="5_57nh2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhg8m"]
 height = 130.0
 
-[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement", "navigation")]
+[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
 motion_mode = 1
 script = ExtResource("1_w5m6e")
 movement = NodePath("MovementModule")
-navigation = NodePath("EnemyNavigationModule")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0.835294, 0.756863, 0.356863, 1)
@@ -28,9 +26,6 @@ shape = SubResource("CapsuleShape2D_bhg8m")
 script = ExtResource("2_iucp4")
 body = NodePath("..")
 sprite = NodePath("../Icon")
-
-[node name="EnemyNavigationModule" type="Node" parent="."]
-script = ExtResource("3_pk43u")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_57nh2")

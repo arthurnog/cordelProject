@@ -53,7 +53,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1unx3"]
 resource_name = "player_jump"
-length = 0.15
+length = 20.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -91,7 +91,7 @@ _data = {
 "player_walk": SubResource("Animation_qw3jb")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input", "movement", "body")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input", "movement", "body", "animator", "sprite")]
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
@@ -99,6 +99,8 @@ script = ExtResource("1_4sihv")
 input = NodePath("PlayerInputModule")
 movement = NodePath("MovementModule")
 body = NodePath("Body")
+animator = NodePath("AnimationPlayer")
+sprite = NodePath("Body/Sprite")
 
 [node name="Body" type="Area2D" parent="."]
 collision_layer = 4

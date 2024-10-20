@@ -16,8 +16,8 @@ var jump_buffer_count = 0.0
 
 
 func _process(delta: float) -> void:
-	move_horizontal(delta)
 	jump()
+	move_horizontal(delta)
 	attack()
 	if(jump_buffer_count > 0.0):
 		jump_buffer_count -= delta
@@ -30,6 +30,7 @@ func move_horizontal(delta: float) -> void:
 		Input.get_axis(UP_ACTION, DOWN_ACTION)
 	)
 	player.movement.move(movement_input, delta)
+	if movement_input.x != 0: player.sprite.flip_h = movement_input.x < 0
 
 # Use MovementModule
 func jump() -> void:
@@ -38,6 +39,11 @@ func jump() -> void:
 	if(jump_buffer_count > 0.0 and player.movement.can_jump):
 		player.movement.jump()
 		jump_buffer_count = 0.0
+		player.animator.play("player_jump")
+	elif player.velocity == Vector2.ZERO && player.movement.can_jump:
+		player.animator.play("player_idle")
+	elif player.movement.height == 0:
+		player.animator.play("player_walk")
 
 # Use CombatModule
 func attack() -> void:

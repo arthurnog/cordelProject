@@ -1,0 +1,4 @@
+├── ui/                    # Interface de Usuário
+│   ├── hud/               # Barras de vida, contador de combo, timer
+│   ├── menus/             # Menu principal, pausa, seleção de personagem
+│   └── screens/           # Game Over, vitória, transições

@@ -1,0 +1,4 @@
+levels/                # Fases do jogo
+├── base_level.tscn    # Cena base com lógica de câmera/limites
+├── stage_01/          # Rua, esgotos, etc.
+└── stage_02/

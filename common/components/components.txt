@@ -1,0 +1,1 @@
+components/        # Nós reutilizáveis (Hitbox, Hurtbox, HealthComponent)

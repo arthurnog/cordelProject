@@ -1,0 +1,1 @@
+# Arquivos brutos (importados pelo Godot)

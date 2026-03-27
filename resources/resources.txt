@@ -1,0 +1,3 @@
+├── resources/             # Dados do jogo (Custom Resources .tres)
+│   ├── character_stats/   # Vida, força, velocidade de cada entidade
+│   └── move_data/         # Dados de combos e frames de ataque

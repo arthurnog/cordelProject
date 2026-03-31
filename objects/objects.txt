@@ -1,0 +1,4 @@
+├── objects/               # Coisas que aparecem nas fases
+│   ├── breakables/        # Caixotes, latas de lixo, cabines
+│   ├── items/             # Comida (cura), armas coletáveis, dinheiro
+│   └── hazards/           # Armadilhas no cenário (buracos, eletricidade)

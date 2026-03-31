@@ -1,0 +1,1 @@
+breakables/        # Caixotes, latas de lixo, cabines

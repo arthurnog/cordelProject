@@ -1,0 +1,1 @@
+shaders/           # Shaders globais (ex: flash de dano, contorno)

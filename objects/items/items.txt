@@ -1,0 +1,1 @@
+items/             # Comida (cura), armas coletáveis, dinheiro

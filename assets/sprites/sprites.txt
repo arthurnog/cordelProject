@@ -1,0 +1,1 @@
+sprites/           # Personagens, cenários e itens (PNG/Aseprite)

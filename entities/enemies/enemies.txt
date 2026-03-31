@@ -1,0 +1,3 @@
+enemies/           # Inimigos (divididos por tipo ou tier)
+│   ├── grunt/         # Inimigo básico
+│   └── boss_01/       # Primeiro chefe

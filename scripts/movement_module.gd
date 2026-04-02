@@ -21,7 +21,7 @@ var height: float = 0.0
 var velocity_h: float = 0.0
 
 func move(direction: Vector2, delta: float) -> void:
-	source.velocity = direction * delta * speed * 25
+	source.velocity = direction * speed
 
 func jump():
 	velocity_h = jump_force

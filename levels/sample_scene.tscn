@@ -17,17 +17,20 @@ size = Vector2(37, 560)
 script = ExtResource("1_oof7d")
 
 [node name="Player" parent="." unique_id=2101920649 instance=ExtResource("1_y2a1n")]
-position = Vector2(953, 351)
+position = Vector2(910, 353)
 collision_mask = 137
 
 [node name="Minion" parent="." unique_id=705377771 instance=ExtResource("2_pcboj")]
-position = Vector2(239, 112)
+position = Vector2(1167, 228)
+can_attack = false
 
 [node name="Minion2" parent="." unique_id=468686920 instance=ExtResource("2_pcboj")]
-position = Vector2(445, 186)
+position = Vector2(1189, 477)
+can_attack = false
 
 [node name="Minion3" parent="." unique_id=1049154289 instance=ExtResource("2_pcboj")]
-position = Vector2(719, 370)
+position = Vector2(1130, 351)
+can_attack = false
 
 [node name="Cenario" type="Node" parent="." unique_id=2069501908]
 

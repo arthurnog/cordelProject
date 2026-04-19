@@ -99,12 +99,14 @@ radius = 40.0
 height = 190.0
 
 [node name="Minion" type="CharacterBody2D" unique_id=502954186 node_paths=PackedStringArray("movement", "animator", "sprite")]
+position = Vector2(1, -1)
 collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_w5m6e")
 movement = NodePath("MovementModule")
 animator = NodePath("AnimationPlayer")
 sprite = NodePath("Body/Sprite")
+can_attack = true
 
 [node name="Body" type="Area2D" parent="." unique_id=141425835]
 modulate = Color(0, 0.851607, 0.75507, 1)
@@ -116,7 +118,6 @@ monitoring = false
 texture = ExtResource("2_phcvq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=201930561]
-visible = false
 position = Vector2(-16, -5)
 shape = SubResource("CapsuleShape2D_fw0ie")
 

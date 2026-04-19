@@ -17,7 +17,7 @@ size = Vector2(37, 560)
 script = ExtResource("1_oof7d")
 
 [node name="Player" parent="." unique_id=2101920649 instance=ExtResource("1_y2a1n")]
-position = Vector2(190, 426)
+position = Vector2(953, 351)
 collision_mask = 137
 
 [node name="Minion" parent="." unique_id=705377771 instance=ExtResource("2_pcboj")]

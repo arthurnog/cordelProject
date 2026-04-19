@@ -7,6 +7,9 @@ class_name Minion
 @export var minimum_distance_to_player: float = 10.0
 @export var animator: AnimationPlayer
 @export var sprite: Sprite2D
+#@export var act_timer: Timer
+@export var change_state_time: float = 5.0
+@export var reaction_time: float = 1.3
 
 # Stats do inimigo
 @export_category("Stats")

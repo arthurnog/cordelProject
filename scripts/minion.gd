@@ -56,11 +56,6 @@ func take_damage(damage: int) -> void:
 		die()
 	
 func die() -> void:
-	print("💀 Minion morreu!")
-	
-	# Desativar colisão
-	$CollisionShape2D.disabled = true
-	
 	# Efeito de morte
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate", Color.RED, 0.2)

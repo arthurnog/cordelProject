@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="cordelProject"
-run/main_scene="res://nodes/sample_scene.tscn"
+run/main_scene="uid://bp34f38r466wy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -65,6 +65,10 @@ p_jump={
 
 [layer_names]
 
+2d_render/layer_1="Player"
+2d_render/layer_2="World"
+2d_render/layer_3="Obstacle"
+2d_render/layer_4="Enemy"
 2d_physics/layer_1="Bounds"
 2d_physics/layer_2="Player base"
 2d_physics/layer_3="Player body"

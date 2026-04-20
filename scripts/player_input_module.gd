@@ -12,44 +12,39 @@ const JUMP_ACTION = "p_jump"
 const ATTACK_ACTION = "p_attack"
 
 const JUMP_BUFFER_DURATION: float = 0.5
-var jump_buffer_count = 0.0
-
+var jump_buffer_count: float = 0.0
 
 func _process(delta: float) -> void:
-	jump()
-	move_horizontal(delta)
-	attack()
-	if(jump_buffer_count > 0.0):
+	# Atualizar buffer do pulo
+	if jump_buffer_count > 0.0:
 		jump_buffer_count -= delta
-		if(jump_buffer_count < 0.0): jump_buffer_count = 0.0
+		if jump_buffer_count < 0.0:
+			jump_buffer_count = 0.0
 
-# Use MovementModule
-func move_horizontal(delta: float) -> void:
-	var movement_input: Vector2 = Vector2(
+# Retorna a direção de movimento
+func get_movement_direction() -> Vector2:
+	return Vector2(
 		Input.get_axis(LEFT_ACTION, RIGHT_ACTION),
 		Input.get_axis(UP_ACTION, DOWN_ACTION)
 	)
-	player.movement.move(movement_input, delta)
-	if movement_input.x != 0:
-		var flip: bool = movement_input.x < 0 
-		player.sprite.flip_h = flip
-		player.sprite.position.x = Player.FLIPPED_SPRITE_X_OFFSET * int(flip)
 
-# Use MovementModule
-func jump() -> void:
-	if(Input.is_action_just_pressed(JUMP_ACTION)):
+# Verifica se o botão de pulo foi pressionado
+func is_jump_just_pressed() -> bool:
+	return Input.is_action_just_pressed(JUMP_ACTION)
+
+# Verifica se o botão de ataque foi pressionado
+func is_attack_just_pressed() -> bool:
+	return Input.is_action_just_pressed(ATTACK_ACTION)
+
+# Verifica se tem pulo no buffer
+func has_jump_buffered() -> bool:
+	return jump_buffer_count > 0.0
+
+# Consome o buffer do pulo (chamar quando o pulo for executado)
+func consume_jump_buffer() -> void:
+	jump_buffer_count = 0.0
+
+# Adiciona pulo ao buffer (chamar quando pressionar pulo)
+func add_jump_buffer() -> void:
+	if Input.is_action_just_pressed(JUMP_ACTION):
 		jump_buffer_count = JUMP_BUFFER_DURATION
-	if(jump_buffer_count > 0.0 and player.movement.can_jump):
-		player.movement.jump()
-		jump_buffer_count = 0.0
-		player.animator.play("player_jump")
-	elif player.velocity == Vector2.ZERO && player.movement.can_jump:
-		player.animator.play("player_idle")
-	elif player.movement.height == 0:
-		player.animator.play("player_walk")
-
-# Use CombatModule
-func attack() -> void:
-	if(Input.is_action_just_pressed(ATTACK_ACTION)):
-		pass
-		## Call CombatModule attack action

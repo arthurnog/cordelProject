@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://cakufept1yojf"]
 
-[ext_resource type="Script" path="res://scripts/minion.gd" id="1_w5m6e"]
-[ext_resource type="Script" path="res://scripts/movement_module.gd" id="2_iucp4"]
-[ext_resource type="Texture2D" uid="uid://bdjnqudpkd8ib" path="res://assets/mc/mc_idle.png" id="2_phcvq"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="5_57nh2"]
-[ext_resource type="Script" path="res://scripts/states/minion/minion_idle_state.gd" id="5_uq27w"]
-[ext_resource type="Script" path="res://scripts/states/minion/minion_wait_state.gd" id="6_fon8q"]
-[ext_resource type="Texture2D" uid="uid://7qcrgn64sktm" path="res://assets/mc/mc_j0.png" id="7_gol6g"]
-[ext_resource type="Texture2D" uid="uid://c5xdfqw7p7xp1" path="res://assets/mc/mc_j1.png" id="8_qh1j0"]
-[ext_resource type="Texture2D" uid="uid://dcavx2rjtpf2n" path="res://assets/mc/mc_w0.png" id="9_3dvlm"]
-[ext_resource type="Texture2D" uid="uid://chf6w7h5cuoo1" path="res://assets/mc/mc_w1.png" id="10_bu3dh"]
-[ext_resource type="Texture2D" uid="uid://dvrhwux1kaec5" path="res://assets/mc/mc_w2.png" id="11_1kql2"]
-[ext_resource type="Texture2D" uid="uid://co5mju380n27v" path="res://assets/mc/mc_w3.png" id="12_2lrow"]
+[ext_resource type="Script" uid="uid://bjdmmek5ytmrk" path="res://scripts/minion.gd" id="1_w5m6e"]
+[ext_resource type="Script" uid="uid://b43xx78oswm0r" path="res://scripts/movement_module.gd" id="2_iucp4"]
+[ext_resource type="Texture2D" uid="uid://bdjnqudpkd8ib" path="res://assets/sprites/mc/mc_idle.png" id="2_phcvq"]
+[ext_resource type="Script" uid="uid://btm2o8031lewv" path="res://scripts/state_machine.gd" id="5_57nh2"]
+[ext_resource type="Script" uid="uid://ewtoenlorrp2" path="res://scripts/states/minion/minion_idle_state.gd" id="5_uq27w"]
+[ext_resource type="Script" uid="uid://kgtowtkosmdy" path="res://scripts/states/minion/minion_wait_state.gd" id="6_fon8q"]
+[ext_resource type="Texture2D" uid="uid://7qcrgn64sktm" path="res://assets/sprites/mc/mc_j0.png" id="7_gol6g"]
+[ext_resource type="Texture2D" uid="uid://c5xdfqw7p7xp1" path="res://assets/sprites/mc/mc_j1.png" id="8_qh1j0"]
+[ext_resource type="Texture2D" uid="uid://dcavx2rjtpf2n" path="res://assets/sprites/mc/mc_w0.png" id="9_3dvlm"]
+[ext_resource type="Texture2D" uid="uid://chf6w7h5cuoo1" path="res://assets/sprites/mc/mc_w1.png" id="10_bu3dh"]
+[ext_resource type="Texture2D" uid="uid://dvrhwux1kaec5" path="res://assets/sprites/mc/mc_w2.png" id="11_1kql2"]
+[ext_resource type="Texture2D" uid="uid://co5mju380n27v" path="res://assets/sprites/mc/mc_w3.png" id="12_2lrow"]
+[ext_resource type="PackedScene" uid="uid://bnogvq4m7o73a" path="res://common/components/hitbox/damage_receiver.tscn" id="13_b077y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fw0ie"]
 radius = 38.0
@@ -87,52 +88,67 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dohus"]
 _data = {
-"RESET": SubResource("Animation_k0f4g"),
-"player_idle": SubResource("Animation_lcnj7"),
-"player_jump": SubResource("Animation_1unx3"),
-"player_walk": SubResource("Animation_qw3jb")
+&"RESET": SubResource("Animation_k0f4g"),
+&"player_idle": SubResource("Animation_lcnj7"),
+&"player_jump": SubResource("Animation_1unx3"),
+&"player_walk": SubResource("Animation_qw3jb")
 }
 
-[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("movement", "animator", "sprite")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b077y"]
+radius = 40.0
+height = 190.0
+
+[node name="Minion" type="CharacterBody2D" unique_id=502954186 node_paths=PackedStringArray("movement", "animator", "sprite")]
+collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_w5m6e")
 movement = NodePath("MovementModule")
 animator = NodePath("AnimationPlayer")
 sprite = NodePath("Body/Sprite")
 
-[node name="Body" type="Area2D" parent="."]
+[node name="Body" type="Area2D" parent="." unique_id=141425835]
 modulate = Color(0, 0.851607, 0.75507, 1)
-collision_layer = 4
-collision_mask = 64
+collision_layer = 0
+collision_mask = 0
+monitoring = false
 
-[node name="Sprite" type="Sprite2D" parent="Body"]
+[node name="Sprite" type="Sprite2D" parent="Body" unique_id=1507705612]
 texture = ExtResource("2_phcvq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=201930561]
+visible = false
 position = Vector2(-16, -5)
 shape = SubResource("CapsuleShape2D_fw0ie")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=767076721]
 position = Vector2(-15, 91)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2pkfs")
 
-[node name="MovementModule" type="Node" parent="." node_paths=PackedStringArray("source", "body")]
+[node name="MovementModule" type="Node" parent="." unique_id=2048836791 node_paths=PackedStringArray("source", "body")]
 script = ExtResource("2_iucp4")
 source = NodePath("..")
 body = NodePath("../Body")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=1395593425 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_57nh2")
 initial_state = NodePath("Wait")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=999729500]
 script = ExtResource("5_uq27w")
 
-[node name="Wait" type="Node" parent="StateMachine"]
+[node name="Wait" type="Node" parent="StateMachine" unique_id=693512413]
 script = ExtResource("6_fon8q")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dohus")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=256373444]
+libraries/ = SubResource("AnimationLibrary_dohus")
+
+[node name="DamageReceiver" parent="." unique_id=573795671 instance=ExtResource("13_b077y")]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="DamageReceiver" index="0" unique_id=1213314921]
+position = Vector2(-10, -4)
+shape = SubResource("CapsuleShape2D_b077y")
+
+[editable path="DamageReceiver"]

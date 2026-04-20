@@ -41,6 +41,6 @@ Estrutura de pastas:
 │   └── screens/           # Game Over, vitória, transições
 │
 └── autoloads/             # Scripts globais (Singletons)
-    ├── game_manager.gd    # Pontuação, progresso da fase
-    ├── sound_manager.gd   # Controle central de áudio
-    └── signal_bus.gd      # Central de sinais (Event Bus)
+	├── game_manager.gd    # Pontuação, progresso da fase
+	├── sound_manager.gd   # Controle central de áudio
+	└── signal_bus.gd      # Central de sinais (Event Bus)

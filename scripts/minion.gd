@@ -9,6 +9,7 @@ class_name Minion
 @export var sprite: Sprite2D
 @export var change_state_time: float = 5.0
 @export var reaction_time: float = 1.3
+@export var attack_distance = 160
 @export var can_attack: bool = false
 
 # Stats do inimigo
@@ -25,7 +26,7 @@ var is_invincible: bool = false
 
 func _ready() -> void:
 	current_health = max_health
-	
+	can_attack = false
 	damage_receiver.damage_received.connect(_on_damage_received)
 		
 func start_invincibility() -> void:

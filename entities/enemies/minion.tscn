@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://btm2o8031lewv" path="res://scripts/state_machine.gd" id="5_57nh2"]
 [ext_resource type="Script" uid="uid://ewtoenlorrp2" path="res://scripts/states/minion/minion_idle_state.gd" id="5_uq27w"]
 [ext_resource type="Script" uid="uid://kgtowtkosmdy" path="res://scripts/states/minion/minion_wait_state.gd" id="6_fon8q"]
+[ext_resource type="Script" uid="uid://cvuu3tc7m1nxw" path="res://scripts/states/minion/minion_attack_state.gd" id="7_2dig4"]
 [ext_resource type="Texture2D" uid="uid://7qcrgn64sktm" path="res://assets/sprites/mc/mc_j0.png" id="7_gol6g"]
 [ext_resource type="Texture2D" uid="uid://c5xdfqw7p7xp1" path="res://assets/sprites/mc/mc_j1.png" id="8_qh1j0"]
 [ext_resource type="Texture2D" uid="uid://dcavx2rjtpf2n" path="res://assets/sprites/mc/mc_w0.png" id="9_3dvlm"]
@@ -140,6 +141,9 @@ script = ExtResource("5_uq27w")
 
 [node name="Wait" type="Node" parent="StateMachine" unique_id=693512413]
 script = ExtResource("6_fon8q")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1924257264]
+script = ExtResource("7_2dig4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=256373444]
 libraries/ = SubResource("AnimationLibrary_dohus")

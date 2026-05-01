@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dl0okljgbin04"]
 
-[ext_resource type="Script" uid="uid://ci47f761y04un" path="res://entities/entity.gd" id="1_jm4vq"]
+[ext_resource type="Script" uid="uid://ci47f761y04un" path="res://scripts/entities/entity.gd" id="1_jm4vq"]
 [ext_resource type="PackedScene" uid="uid://mx6x0dv4bgxi" path="res://common/components/hitbox/damage_emitter.tscn" id="2_ep4xq"]
 
 [node name="Entity" type="CharacterBody2D" unique_id=889834335]

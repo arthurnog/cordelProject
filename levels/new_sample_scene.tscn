@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c8t1gksdq4rs" path="res://assets/sprites/scenario/cenario0.png" id="2_o3i6p"]
 [ext_resource type="Texture2D" uid="uid://fklkthqbvmuh" path="res://assets/sprites/scenario/cenario2.png" id="3_nctt5"]
 [ext_resource type="Texture2D" uid="uid://d4f6jndrh8v7x" path="res://assets/sprites/scenario/ceu.png" id="4_o3i6p"]
-[ext_resource type="PackedScene" uid="uid://d32twcmfiw2jp" path="res://entities/player.tscn" id="5_nctt5"]
+[ext_resource type="PackedScene" uid="uid://d32twcmfiw2jp" path="res://entities/player/player.tscn" id="5_nctt5"]
 [ext_resource type="Script" uid="uid://by7qt3mqhljjb" path="res://levels/camera_2d.gd" id="6_pwx0r"]
-[ext_resource type="PackedScene" uid="uid://81nn6f8ura3b" path="res://entities/minion.tscn" id="7_823r0"]
+[ext_resource type="PackedScene" uid="uid://81nn6f8ura3b" path="res://entities/enemies/minion.tscn" id="7_823r0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nctt5"]
 size = Vector2(3880, 385)

@@ -6,7 +6,6 @@ class_name MinionMovement
 @export var body: Node2D
 
 @export_category("Horizontal Movement")
-@export var speed: float = 350.0
 
 @export_category("Jump")
 @export var gravity = 450
@@ -21,7 +20,8 @@ var height: float = 0.0
 var velocity_h: float = 0.0
 
 func move(direction: Vector2, delta: float) -> void:
-	source.velocity = direction * speed
+	source.velocity = direction * source.speed
+	source.move_and_slide()
 
 func jump():
 	velocity_h = jump_force

@@ -1,44 +1,14 @@
 extends State
-class_name MinionAttackState
+class_name MinionPunchState
 
-@onready var player: Minion = get_parent().get_parent()
-@onready var damage_emitter := player.get_node("DamageEmitter")
-
-var attack_timer: float = 0.0
-var combo_triggered: bool = false
+@onready var body: Minion = get_parent().get_parent()
 
 func start() -> void:
-	player.animator.play("punch")
-	attack_timer = 0.0
-	combo_triggered = false
-	
+	body.movement.move(Vector2.ZERO, 0.0)
+	body.animator.play("player_punch")
+	body.animator.animation_finished.connect(_on_animation_finished)
 
-func update(delta: float) -> void:
-	attack_timer += delta
-	if attack_timer >= 0.4:
-		end_attack()
-		return
-	if player.input.is_attack_just_pressed():
-		combo_triggered = true
-	if combo_triggered:
-		return
-	elif not combo_triggered and attack_timer >= 0.23:
-		end_attack()
-		return
-	
-
-func end_attack() -> void:
-	var direction = player.input.get_movement_direction()
-	if direction != Vector2.ZERO:
-		transition.emit(self, "walk")
-	else:
-		transition.emit(self, "player_idle")
-		
-func physics_update(delta: float) -> void:
-	player.movement.move(Vector2.ZERO, delta)
-	player.movement.apply(delta)
-
-func end() -> void:
-	print("Saindo do estado de punch")
-	# Desativar hitbox do ataque
-	
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "player_punch":
+		body.animator.animation_finished.disconnect(_on_animation_finished)
+		transition.emit(self, "wait")

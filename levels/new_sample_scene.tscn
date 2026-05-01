@@ -80,6 +80,7 @@ scale = Vector2(0.23148149, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Camera2D/InvisibleWalls" unique_id=2124135018]
 position = Vector2(0, 400)
+collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/InvisibleWalls/StaticBody2D" unique_id=218386523]
@@ -87,10 +88,12 @@ shape = SubResource("RectangleShape2D_pwx0r")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Camera2D/InvisibleWalls" unique_id=107954857]
 position = Vector2(1512, 400)
+collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/InvisibleWalls/StaticBody2D2" unique_id=557115495]
 shape = SubResource("RectangleShape2D_pwx0r")
 
-[node name="Minion" parent="." unique_id=681171501 instance=ExtResource("7_823r0")]
+[node name="Minion" parent="." unique_id=681171501 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
 position = Vector2(698, 590)
+player = NodePath("../Player")

@@ -4,6 +4,12 @@ extends Entity
 @onready var movement := $Movement
 @onready var state_machine := $StateMachine
 @onready var damage_receiver := $DamageReceiver
+@export var player: Player
+
+@export var change_state_time: float = 1.5
+@export var reaction_time: float = 0.2
+@export var minimum_distance_to_player: float = 10.0
+var can_attack: bool = true
 
 func _ready() -> void:
 	super()

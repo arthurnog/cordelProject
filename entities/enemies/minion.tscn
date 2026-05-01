@@ -14,12 +14,32 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4p34"]
 height = 102.0
 
+[sub_resource type="Animation" id="Animation_co0nr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgqiv"]
+_data = {
+&"RESET": SubResource("Animation_co0nr")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxqmf"]
 radius = 31.0
 height = 168.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdhl"]
-size = Vector2(78, 23)
+size = Vector2(72, 23)
 
 [node name="Minion" unique_id=889834335 instance=ExtResource("1_v1xey")]
 collision_layer = 8
@@ -37,7 +57,7 @@ texture = ExtResource("2_blnf3")
 centered = false
 hframes = 5
 vframes = 5
-frame = 5
+frame = 15
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1261289332]
 position = Vector2(-8, -31)
@@ -45,6 +65,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_e4p34")
 
 [node name="AnimationPlayer" parent="." index="2" unique_id=97044369]
+libraries/ = SubResource("AnimationLibrary_cgqiv")
 libraries/nonato_comum = ExtResource("4_dl250")
 
 [node name="Movement" type="Node" parent="." index="3" unique_id=1903526551 node_paths=PackedStringArray("source", "body")]

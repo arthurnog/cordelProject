@@ -5,7 +5,7 @@ class_name MinionWaitState
 
 func start() -> void:
 	body.movement.move(Vector2.ZERO, 0.0)
-	body.animator.play("player_idle")
+	body.animator.play("nonato_comum/idle")
 	
 	# vira pro player uma vez só
 	var direction_to_player = body.player.position.x - body.global_position.x
@@ -21,9 +21,13 @@ func update(delta: float) -> void:
 	var distance_to_player = (body.position - body.player.position).length()
 	if distance_to_player < body.minimum_distance_to_player:
 		transition.emit(self, "idle")
+	if body.is_hurt:
+		transition.emit(self, "idle")
+
 
 func timer_end() -> void:
 	transition.emit(self, "idle")
 
 func _reaction_timer_timeout(flip: bool) -> void:
 	body.entity_sprite.flip_h = flip
+	body.damage_emitter.scale.x = -1 if flip else 1

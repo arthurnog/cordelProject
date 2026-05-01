@@ -22,6 +22,8 @@ func update(delta: float) -> void:
 		transition.emit(self, "wait")
 		
 func physics_update(delta: float) -> void:
+	if body.is_hurt:
+		return
 	var direction = (target_position - body.global_position).normalized()
 	
 	if abs(direction.x) > 0.3:

@@ -10,6 +10,7 @@ extends Entity
 @export var reaction_time: float = 0.2
 @export var minimum_distance_to_player: float = 10.0
 var can_attack: bool = true
+var is_hurt: bool = false
 
 func _ready() -> void:
 	super()
@@ -18,4 +19,11 @@ func _ready() -> void:
 
 func on_receive_damage(amount: int) -> void:
 	health -= amount
-	print(name, " tomou dano! HP: ", health)
+	is_hurt = true
+	movement.move(Vector2.ZERO, 0.0)
+	animator.stop()
+	animator.play("nonato_comum/damage")
+	if health <= 0:
+		queue_free()
+	await animator.animation_finished
+	is_hurt = false

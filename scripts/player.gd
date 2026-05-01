@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name Player
+class_name Player2
 
 const FLIPPED_SPRITE_X_OFFSET = -32
 

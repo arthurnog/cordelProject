@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d32twcmfiw2jp"]
+
+[ext_resource type="PackedScene" uid="uid://dl0okljgbin04" path="res://entities/entity.tscn" id="1_merdl"]
+[ext_resource type="Texture2D" uid="uid://cn2yf8berr20q" path="res://assets/sprites/mc/spritesheet-nonato.png" id="2_b0kkn"]
+[ext_resource type="Script" uid="uid://bpl3kf3lrjoo5" path="res://entities/player.gd" id="2_e4p34"]
+[ext_resource type="Script" uid="uid://btm2o8031lewv" path="res://scripts/state_machine.gd" id="4_6nm46"]
+[ext_resource type="AnimationLibrary" uid="uid://dunma3t8usj65" path="res://assets/animations/nonato_comum.res" id="4_x08pd"]
+[ext_resource type="Script" uid="uid://bhto5gng7duvg" path="res://scripts/states/player/player_idle.gd" id="5_i623q"]
+[ext_resource type="Script" uid="uid://djsukuqk4ty51" path="res://scripts/states/player/walk.gd" id="6_ef06p"]
+[ext_resource type="Script" uid="uid://btwkryfhvyp8t" path="res://scripts/states/player/punch.gd" id="7_tjdhl"]
+[ext_resource type="Script" uid="uid://dxxm6bigmrjvt" path="res://entities/input_node.gd" id="8_i623q"]
+[ext_resource type="Script" uid="uid://ddccoywt0ufan" path="res://entities/movement.gd" id="9_ef06p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4p34"]
+height = 102.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdhl"]
+size = Vector2(78, 23)
+
+[node name="Player" unique_id=889834335 instance=ExtResource("1_merdl")]
+z_index = -5
+script = ExtResource("2_e4p34")
+damage = 10
+speed = 200
+
+[node name="EntitySprite" parent="." index="0" unique_id=643993809]
+position = Vector2(33, 58)
+texture = ExtResource("2_b0kkn")
+centered = false
+offset = Vector2(-132.63, -260)
+hframes = 5
+vframes = 5
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1261289332]
+position = Vector2(0, -31)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_e4p34")
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=97044369]
+libraries/ = ExtResource("4_x08pd")
+
+[node name="StateMachine" type="Node" parent="." index="3" unique_id=373210114 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_6nm46")
+initial_state = NodePath("player_idle")
+metadata/_custom_type_script = "uid://btm2o8031lewv"
+
+[node name="walk" type="Node" parent="StateMachine" index="0" unique_id=413055748]
+script = ExtResource("6_ef06p")
+metadata/_custom_type_script = "uid://djsukuqk4ty51"
+
+[node name="punch" type="Node" parent="StateMachine" index="1" unique_id=776345763]
+script = ExtResource("7_tjdhl")
+metadata/_custom_type_script = "uid://btwkryfhvyp8t"
+
+[node name="player_idle" type="Node" parent="StateMachine" index="2" unique_id=1295317049]
+script = ExtResource("5_i623q")
+
+[node name="PlayerInput" type="Node" parent="." index="4" unique_id=1640238250]
+script = ExtResource("8_i623q")
+
+[node name="Movement" type="Node" parent="." index="5" unique_id=1237352173]
+script = ExtResource("9_ef06p")
+
+[node name="DamageEmitter" parent="." index="6" unique_id=623434035]
+collision_layer = 32
+collision_mask = 16
+monitoring = true
+
+[node name="CollisionShape2D" parent="DamageEmitter" index="0" unique_id=572966824]
+position = Vector2(60, -149.5)
+shape = SubResource("RectangleShape2D_tjdhl")
+
+[editable path="DamageEmitter"]

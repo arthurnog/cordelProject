@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cuqdk8d7m0rfq"]
+
+[ext_resource type="Texture2D" uid="uid://bkb6yaofodtnu" path="res://assets/sprites/scenario/cenario1.png" id="1_nc8gv"]
+[ext_resource type="Texture2D" uid="uid://c8t1gksdq4rs" path="res://assets/sprites/scenario/cenario0.png" id="2_o3i6p"]
+[ext_resource type="Texture2D" uid="uid://fklkthqbvmuh" path="res://assets/sprites/scenario/cenario2.png" id="3_nctt5"]
+[ext_resource type="Texture2D" uid="uid://d4f6jndrh8v7x" path="res://assets/sprites/scenario/ceu.png" id="4_o3i6p"]
+[ext_resource type="PackedScene" uid="uid://d32twcmfiw2jp" path="res://entities/player.tscn" id="5_nctt5"]
+[ext_resource type="Script" uid="uid://by7qt3mqhljjb" path="res://levels/camera_2d.gd" id="6_pwx0r"]
+[ext_resource type="PackedScene" uid="uid://81nn6f8ura3b" path="res://entities/minion.tscn" id="7_823r0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nctt5"]
+size = Vector2(3880, 385)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwx0r"]
+size = Vector2(37, 560)
+
+[node name="Stage" type="Node2D" unique_id=1970063175]
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=1451488290]
+position = Vector2(0, 350)
+
+[node name="b1" type="Sprite2D" parent="Backgrounds" unique_id=2006991163]
+position = Vector2(425.32, 44.55001)
+scale = Vector2(0.663, 0.663)
+texture = ExtResource("1_nc8gv")
+
+[node name="b2" type="Sprite2D" parent="Backgrounds" unique_id=1978851937]
+position = Vector2(1273.6116, 44.73123)
+scale = Vector2(-0.665, 0.665)
+texture = ExtResource("2_o3i6p")
+
+[node name="b3" type="Sprite2D" parent="Backgrounds" unique_id=951523682]
+position = Vector2(2122.347, 43.179718)
+scale = Vector2(0.66912436, 0.6691244)
+texture = ExtResource("3_nctt5")
+
+[node name="Sol" type="Sprite2D" parent="Backgrounds" unique_id=241399348]
+z_index = -5
+position = Vector2(1586, -187.25003)
+scale = Vector2(0.6078124, 0.6078124)
+texture = ExtResource("4_o3i6p")
+
+[node name="Ceu" type="Polygon2D" parent="Backgrounds" unique_id=1505854096]
+z_index = -6
+position = Vector2(16813.623, -818.2887)
+scale = Vector2(4.722833, 0.95360833)
+color = Color(0.972549, 0.9137255, 0.7882353, 1)
+polygon = PackedVector2Array(-3589.1892, 289.72974, -2929.7297, 289.72974, -2936.3906, 566.62524, -2944.865, 918.9189, -3604.3242, 901.62164)
+
+[node name="Player" parent="." unique_id=889834335 instance=ExtResource("5_nctt5")]
+z_index = 1
+position = Vector2(364, 499)
+collision_layer = 2
+
+[node name="InvisibleWalls" type="Node" parent="." unique_id=1518793278]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="InvisibleWalls" unique_id=1619858469]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D" unique_id=1711068977]
+position = Vector2(1947, 146)
+shape = SubResource("RectangleShape2D_nctt5")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="InvisibleWalls" unique_id=1827406487]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D2" unique_id=1553292287]
+position = Vector2(1938, 860)
+shape = SubResource("RectangleShape2D_nctt5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1041901267 node_paths=PackedStringArray("player")]
+position = Vector2(646.99994, 312)
+scale = Vector2(4.3199997, 1)
+script = ExtResource("6_pwx0r")
+player = NodePath("../Player")
+
+[node name="InvisibleWalls" type="Node2D" parent="Camera2D" unique_id=2077703104]
+position = Vector2(-145.83334, -259)
+scale = Vector2(0.23148149, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D/InvisibleWalls" unique_id=2124135018]
+position = Vector2(0, 400)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/InvisibleWalls/StaticBody2D" unique_id=218386523]
+shape = SubResource("RectangleShape2D_pwx0r")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera2D/InvisibleWalls" unique_id=107954857]
+position = Vector2(1512, 400)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/InvisibleWalls/StaticBody2D2" unique_id=557115495]
+shape = SubResource("RectangleShape2D_pwx0r")
+
+[node name="Minion" parent="." unique_id=681171501 instance=ExtResource("7_823r0")]
+position = Vector2(698, 590)

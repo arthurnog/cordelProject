@@ -1,7 +1,7 @@
 extends State
-class_name PlayerAttackState
+class_name MinionAttackState
 
-@onready var player: Player = get_parent().get_parent()
+@onready var player: Minion = get_parent().get_parent()
 @onready var damage_emitter := player.get_node("DamageEmitter")
 
 var attack_timer: float = 0.0
@@ -41,7 +41,4 @@ func physics_update(delta: float) -> void:
 func end() -> void:
 	print("Saindo do estado de punch")
 	# Desativar hitbox do ataque
-
-func on_emit_damage(damage_receiver: DamageReceiver) -> void:
-	damage_receiver.damage_received.emit(player.damage)
-	print(damage_receiver)
+	

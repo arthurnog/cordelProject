@@ -1,5 +1,5 @@
 extends State
-class_name PlayerIdleState
+class_name MinionIdleState2
 
 @onready var player: Player = get_parent().get_parent()
 

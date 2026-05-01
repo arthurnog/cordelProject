@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="cordelProject"
-run/main_scene="uid://bp34f38r466wy"
+run/main_scene="uid://cuqdk8d7m0rfq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name Minion
+class_name Minion2
 
 @export var movement: MovementModule
 

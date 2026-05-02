@@ -17,6 +17,7 @@ size = Vector2(37, 560)
 [node name="Stage" type="Node2D" unique_id=1970063175]
 
 [node name="Backgrounds" type="Node2D" parent="." unique_id=1451488290]
+z_index = -5
 position = Vector2(0, 350)
 
 [node name="b1" type="Sprite2D" parent="Backgrounds" unique_id=2006991163]
@@ -48,9 +49,8 @@ color = Color(0.972549, 0.9137255, 0.7882353, 1)
 polygon = PackedVector2Array(-3589.1892, 289.72974, -2929.7297, 289.72974, -2936.3906, 566.62524, -2944.865, 918.9189, -3604.3242, 901.62164)
 
 [node name="Player" parent="." unique_id=889834335 instance=ExtResource("5_nctt5")]
-z_index = 1
+y_sort_enabled = true
 position = Vector2(364, 499)
-collision_layer = 2
 
 [node name="InvisibleWalls" type="Node" parent="." unique_id=1518793278]
 
@@ -96,4 +96,12 @@ shape = SubResource("RectangleShape2D_pwx0r")
 
 [node name="Minion" parent="." unique_id=681171501 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
 position = Vector2(698, 590)
+player = NodePath("../Player")
+
+[node name="Minion2" parent="." unique_id=1479351589 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
+position = Vector2(1089, 503)
+player = NodePath("../Player")
+
+[node name="Minion3" parent="." unique_id=432060903 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
+position = Vector2(1893, 600)
 player = NodePath("../Player")

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var jump_force: int
 
 @onready var entity_sprite := $EntitySprite
+@onready var collision_base := $CollisionShape2D
 @onready var animator := $AnimationPlayer
 @onready var damage_emitter := $DamageEmitter
 
@@ -15,6 +16,9 @@ var height_spped := 0.0
 
 func _ready() -> void:
 	damage_emitter.area_entered.connect(on_emit_damage)	
+	
+func _process(delta: float) -> void:
+	z_index = int(collision_base.global_position.y)
 func flip_sprite(vel: Vector2) -> int:
 	if vel.x > 0:
 		entity_sprite.flip_h = false

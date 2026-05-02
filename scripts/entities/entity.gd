@@ -4,10 +4,14 @@ extends CharacterBody2D
 @export var health: int
 @export var damage: int
 @export var speed: int
+@export var jump_force: int
 
 @onready var entity_sprite := $EntitySprite
 @onready var animator := $AnimationPlayer
 @onready var damage_emitter := $DamageEmitter
+
+var height := 0.0
+var height_spped := 0.0
 
 func _ready() -> void:
 	damage_emitter.area_entered.connect(on_emit_damage)	

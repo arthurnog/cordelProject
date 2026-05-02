@@ -9,7 +9,10 @@
 [ext_resource type="Script" uid="uid://djsukuqk4ty51" path="res://scripts/states/player/walk.gd" id="6_ef06p"]
 [ext_resource type="Script" uid="uid://btwkryfhvyp8t" path="res://scripts/states/player/punch.gd" id="7_tjdhl"]
 [ext_resource type="Script" uid="uid://dxxm6bigmrjvt" path="res://scripts/entities/player/input_node.gd" id="8_i623q"]
+[ext_resource type="Script" uid="uid://c3pkp4wdam2ur" path="res://scripts/states/player/jump_start.gd" id="9_7thud"]
 [ext_resource type="Script" uid="uid://ddccoywt0ufan" path="res://scripts/entities/movement.gd" id="9_ef06p"]
+[ext_resource type="Script" uid="uid://cglo34np66wjb" path="res://scripts/states/player/jump_air.gd" id="10_a1qjk"]
+[ext_resource type="Script" uid="uid://b27155er8puab" path="res://scripts/states/player/jump_land.gd" id="11_j3ovn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4p34"]
 height = 102.0
@@ -24,9 +27,10 @@ collision_mask = 129
 script = ExtResource("2_e4p34")
 damage = 10
 speed = 200
+jump_force = 200
 
 [node name="EntitySprite" parent="." index="0" unique_id=643993809]
-position = Vector2(33, 58)
+position = Vector2(33, 0)
 texture = ExtResource("2_b0kkn")
 centered = false
 offset = Vector2(-132.63, -260)
@@ -34,7 +38,7 @@ hframes = 5
 vframes = 5
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1261289332]
-position = Vector2(0, -31)
+position = Vector2(0, -83)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_e4p34")
 
@@ -57,6 +61,15 @@ metadata/_custom_type_script = "uid://btwkryfhvyp8t"
 [node name="player_idle" type="Node" parent="StateMachine" index="2" unique_id=1295317049]
 script = ExtResource("5_i623q")
 
+[node name="jump_start" type="Node" parent="StateMachine" index="3" unique_id=574949606]
+script = ExtResource("9_7thud")
+
+[node name="jump_air" type="Node" parent="StateMachine" index="4" unique_id=259914448]
+script = ExtResource("10_a1qjk")
+
+[node name="jump_land" type="Node" parent="StateMachine" index="5" unique_id=847187753]
+script = ExtResource("11_j3ovn")
+
 [node name="PlayerInput" type="Node" parent="." index="4" unique_id=1640238250]
 script = ExtResource("8_i623q")
 
@@ -68,7 +81,13 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="DamageEmitter" index="0" unique_id=572966824]
-position = Vector2(57, -149.5)
+position = Vector2(57, -203.5)
 shape = SubResource("RectangleShape2D_tjdhl")
+
+[node name="Shadow" type="Polygon2D" parent="." index="7" unique_id=710627248]
+position = Vector2(-0.38888478, -50.375565)
+scale = Vector2(0.6111111, 0.3257919)
+color = Color(0, 0, 0, 0.44705883)
+polygon = PackedVector2Array(-55, -94, 53, -94, 50, -81, 0.058817387, -69.44444, -54, -81)
 
 [editable path="DamageEmitter"]

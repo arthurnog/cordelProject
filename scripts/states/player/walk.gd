@@ -5,32 +5,28 @@ class_name PlayerWalkState
 @onready var damage_emitter := player.get_node("DamageEmitter")
 
 func start() -> void:
-	player.animator.play("player_walk")
+	player.animator.play("walk")
 
 func update(delta: float) -> void:
-	var direction = player.input.get_movement_direction()
-	
-	# Verificar se parou de andar
-	if direction.x == 0 and direction.y == 0:
+	if player.input.is_attack_just_pressed():
+		transition.emit(self, "punch")
+		return
+	if player.input.get_movement_direction() == Vector2.ZERO:
 		transition.emit(self, "player_idle")
 		return
-	
-	# Verificar pulo (com buffer)
-	player.input.add_jump_buffer()
-	if player.input.has_jump_buffered() and player.movement.can_jump:
-		player.input.consume_jump_buffer()
-		transition.emit(self, "jump")
-		return
-	
-	if direction.x < 0:
-		player.sprite.flip_h = true
-		damage_emitter.scale.x = -1
-	elif direction.x > 0:
-		player.sprite.flip_h = false
-		damage_emitter.scale.x = 1
+	if player.input.is_jump_just_pressed():
+		transition.emit(self, "jump_start")
+	return
+
 
 
 func physics_update(delta: float) -> void:
 	var direction = player.input.get_movement_direction()
+	var flip = player.flip_sprite(direction)
+	if flip != 0:
+		damage_emitter.scale.x = flip
 	player.movement.move(direction, delta)
-	player.movement._physics_process(delta)
+	player.movement.apply(delta)
+	
+func end() -> void:
+	pass

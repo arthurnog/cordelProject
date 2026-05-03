@@ -1,0 +1,32 @@
+class_name Entity
+extends CharacterBody2D
+
+@export var health: int
+@export var damage: int
+@export var speed: int
+@export var jump_force: int
+
+@onready var entity_sprite := $EntitySprite
+@onready var collision_base := $CollisionShape2D
+@onready var animator := $AnimationPlayer
+@onready var damage_emitter := $DamageEmitter
+
+var height := 0.0
+var height_spped := 0.0
+
+func _ready() -> void:
+	damage_emitter.area_entered.connect(on_emit_damage)	
+	
+func _process(delta: float) -> void:
+	z_index = int(collision_base.global_position.y)
+func flip_sprite(vel: Vector2) -> int:
+	if vel.x > 0:
+		entity_sprite.flip_h = false
+		return 1
+	elif vel.x < 0:
+		entity_sprite.flip_h = true
+		return -1
+	return 0;
+
+func on_emit_damage(damage_receiver : DamageReceiver) -> void:
+	damage_receiver.damage_received.emit(damage)

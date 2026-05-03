@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dl0okljgbin04"]
+
+[ext_resource type="Script" uid="uid://ci47f761y04un" path="res://scripts/entities/entity.gd" id="1_jm4vq"]
+[ext_resource type="PackedScene" uid="uid://mx6x0dv4bgxi" path="res://common/components/hitbox/damage_emitter.tscn" id="2_ep4xq"]
+
+[node name="Entity" type="CharacterBody2D" unique_id=889834335]
+script = ExtResource("1_jm4vq")
+
+[node name="EntitySprite" type="Sprite2D" parent="." unique_id=643993809]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1261289332]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97044369]
+root_node = NodePath("../CollisionShape2D")
+
+[node name="DamageEmitter" parent="." unique_id=623434035 instance=ExtResource("2_ep4xq")]

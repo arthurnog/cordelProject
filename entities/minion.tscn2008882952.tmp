@@ -2,62 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://dl0okljgbin04" path="res://entities/entity.tscn" id="1_v1xey"]
 [ext_resource type="Texture2D" uid="uid://cn2yf8berr20q" path="res://assets/sprites/mc/spritesheet-nonato.png" id="2_blnf3"]
-[ext_resource type="Script" uid="uid://cjv1cjwcckgwh" path="res://scripts/entities/minion/minion.gd" id="2_seymj"]
-[ext_resource type="Script" uid="uid://b5awd442y6v0x" path="res://scripts/entities/minion/minion_movement.gd" id="4_d4ebh"]
+[ext_resource type="Script" uid="uid://cjv1cjwcckgwh" path="res://entities/minion.gd" id="2_seymj"]
+[ext_resource type="Script" uid="uid://b5awd442y6v0x" path="res://entities/minion_movement.gd" id="4_d4ebh"]
 [ext_resource type="AnimationLibrary" uid="uid://dunma3t8usj65" path="res://assets/animations/nonato_comum.res" id="4_dl250"]
 [ext_resource type="Script" uid="uid://btm2o8031lewv" path="res://scripts/state_machine.gd" id="4_seymj"]
 [ext_resource type="Script" uid="uid://olps83p6wev7" path="res://scripts/states/minion/minion_walk.gd" id="7_d4ebh"]
 [ext_resource type="Script" uid="uid://vtuqcubnlp64" path="res://scripts/states/minion/minion_atack.gd" id="8_dl250"]
 [ext_resource type="Script" uid="uid://cwc2j3mno3cpn" path="res://scripts/states/minion/minion_idle.gd" id="8_seymj"]
-[ext_resource type="PackedScene" uid="uid://bnogvq4m7o73a" path="res://common/components/hitbox/damage_receiver.tscn" id="11_dl250"]
+[ext_resource type="PackedScene" uid="uid://mx6x0dv4bgxi" path="res://common/components/hitbox/damage_emitter.tscn" id="8_ydquc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4p34"]
 height = 102.0
 
-[sub_resource type="Animation" id="Animation_co0nr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../EntitySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [15]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgqiv"]
-_data = {
-&"RESET": SubResource("Animation_co0nr")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxqmf"]
-radius = 31.0
-height = 168.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdhl"]
-size = Vector2(72, 23)
+size = Vector2(78, 23)
 
 [node name="Minion" unique_id=889834335 instance=ExtResource("1_v1xey")]
-collision_layer = 8
 script = ExtResource("2_seymj")
-change_state_time = 1.5
-reaction_time = 0.2
-minimum_distance_to_player = 10.0
-health = 40
-speed = 100
 
 [node name="EntitySprite" parent="." index="0" unique_id=643993809]
 modulate = Color(0, 1, 1, 1)
-position = Vector2(-100, -202)
+position = Vector2(25, 58)
 texture = ExtResource("2_blnf3")
 centered = false
+offset = Vector2(-132.63, -260)
 hframes = 5
 vframes = 5
-frame = 15
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1261289332]
 position = Vector2(-8, -31)
@@ -65,20 +35,16 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_e4p34")
 
 [node name="AnimationPlayer" parent="." index="2" unique_id=97044369]
-libraries/ = SubResource("AnimationLibrary_cgqiv")
 libraries/nonato_comum = ExtResource("4_dl250")
 
-[node name="Movement" type="Node" parent="." index="3" unique_id=1903526551 node_paths=PackedStringArray("source", "body")]
+[node name="Movement" type="Node" parent="." index="3" unique_id=1903526551]
 script = ExtResource("4_d4ebh")
-source = NodePath("..")
-body = NodePath("../EntitySprite")
 
-[node name="StateMachine" type="Node" parent="." index="4" unique_id=2039462999 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." index="4" unique_id=2039462999]
 script = ExtResource("4_seymj")
-initial_state = NodePath("idle")
 metadata/_custom_type_script = "uid://btm2o8031lewv"
 
-[node name="wait" type="Node" parent="StateMachine" index="0" unique_id=1316973999]
+[node name="walk" type="Node" parent="StateMachine" index="0" unique_id=1316973999]
 script = ExtResource("7_d4ebh")
 metadata/_custom_type_script = "uid://djsukuqk4ty51"
 
@@ -89,18 +55,11 @@ metadata/_custom_type_script = "uid://btwkryfhvyp8t"
 [node name="idle" type="Node" parent="StateMachine" index="2" unique_id=1486188929]
 script = ExtResource("8_seymj")
 
-[node name="DamageReceiver" parent="." index="5" unique_id=573795671 instance=ExtResource("11_dl250")]
-collision_layer = 16
-collision_mask = 32
+[node name="DamageEmitter" parent="." index="5" unique_id=623434035 instance=ExtResource("8_ydquc")]
 
-[node name="CollisionShape2D" parent="DamageReceiver" index="0" unique_id=1213314921]
-position = Vector2(-5, -105)
-shape = SubResource("CapsuleShape2D_yxqmf")
-
-[node name="CollisionShape2D" parent="DamageEmitter" parent_id_path=PackedInt32Array(623434035) index="0" unique_id=572966824]
+[node name="CollisionShape2D" parent="DamageEmitter" index="0" unique_id=572966824]
 position = Vector2(48, -149.5)
 shape = SubResource("RectangleShape2D_tjdhl")
 disabled = true
 
-[editable path="DamageReceiver"]
 [editable path="DamageEmitter"]

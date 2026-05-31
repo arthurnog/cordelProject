@@ -97,11 +97,5 @@ shape = SubResource("RectangleShape2D_pwx0r")
 [node name="Minion" parent="." unique_id=681171501 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
 position = Vector2(698, 590)
 player = NodePath("../Player")
-
-[node name="Minion2" parent="." unique_id=1479351589 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
-position = Vector2(1089, 503)
-player = NodePath("../Player")
-
-[node name="Minion3" parent="." unique_id=432060903 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
-position = Vector2(1893, 600)
-player = NodePath("../Player")
+safe_distance = 200.0
+attack_range = 60.0

@@ -24,6 +24,8 @@ func update(delta: float) -> void:
 func physics_update(delta: float) -> void:
 	if body.is_hurt:
 		return
+	
+	var distance_to_player = (body.player.position - body.position).length()
 	var direction = (target_position - body.global_position).normalized()
 	
 	if abs(direction.x) > 0.3:
@@ -32,7 +34,19 @@ func physics_update(delta: float) -> void:
 			last_flip = new_flip
 			body.flip_sprite(direction)
 			body.damage_emitter.scale.x = new_flip
-	
+
+	if distance_to_player < body.safe_distance or distance_to_player < body.minimum_distance_to_player:
+		#AFASTA
+		body.movement.move(-direction,delta)
+		body.animator.play("nonato_comum/walk")
+	elif distance_to_player > body.safe_distance:
+		#APROXIMA
+		body.movement.move(direction, delta)
+		body.animator.play("nonato_comum/walk")
+	elif distance_to_player <= body.attack_range and body.can_attack:
+		#ATACA
+		transition.emit(self, "punch")
+
 	body.movement.move(direction, delta)
 	body.animator.play("nonato_comum/walk")
 	

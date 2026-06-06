@@ -9,7 +9,7 @@ extends Entity
 @export var change_state_time: float = 1.5
 @export var reaction_time: float = 0.2
 @export var minimum_distance_to_player: float = 10.0
-var can_attack: bool = true
+var intent_to_attack: bool = true
 var is_hurt: bool = false
 
 func _ready() -> void:
@@ -18,6 +18,7 @@ func _ready() -> void:
 	state_machine.initialize(state_machine.initial_state)
 
 func on_receive_damage(amount: int) -> void:
+	if is_hurt: return
 	health -= amount
 	is_hurt = true
 	movement.move(Vector2.ZERO, 0.0)
@@ -25,5 +26,10 @@ func on_receive_damage(amount: int) -> void:
 	animator.play("nonato_comum/damage")
 	if health <= 0:
 		queue_free()
-	await animator.animation_finished
+		return
+	animator.animation_finished.connect(_on_damage_animation_finished, CONNECT_ONE_SHOT)
 	is_hurt = false
+
+func _on_damage_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "nonato_comum/damage":
+		is_hurt = false

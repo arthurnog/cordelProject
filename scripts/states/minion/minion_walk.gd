@@ -16,8 +16,12 @@ func start() -> void:
 		reaction_timer = get_tree().create_timer(body.reaction_time)
 		reaction_timer.timeout.connect(func(): _reaction_timer_timeout(flip))
 	
-	state_timer = get_tree().create_timer(body.change_state_time)
-	state_timer.timeout.connect(timer_end)
+	if body.intent_to_attack:
+		state_timer = get_tree().create_timer(randf_range(0.2, 0.5))
+		state_timer.timeout.connect(func(): transition.emit(self, "punch"))
+	else:
+		state_timer = get_tree().create_timer(randf_range(0.8, 1.5))
+		state_timer.timeout.connect(func(): transition.emit(self, "idle"))
 
 func end() -> void:
 	# Invalida os callbacks pendentes
@@ -25,10 +29,8 @@ func end() -> void:
 	state_timer = null
 
 func update(delta: float) -> void:
-	var distance_to_player = (body.position - body.player.position).length()
-	if distance_to_player < body.minimum_distance_to_player:
-		transition.emit(self, "idle")
 	if body.is_hurt:
+		end()
 		transition.emit(self, "idle")
 
 func timer_end() -> void:

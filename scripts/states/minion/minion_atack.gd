@@ -6,7 +6,8 @@ class_name MinionPunchState
 func start() -> void:
 	body.movement.move(Vector2.ZERO, 0.0)
 	body.animator.play("player_punch")
-	body.animator.animation_finished.connect(_on_animation_finished)
+	if not body.animator.animation_finished.is_connected(_on_animation_finished):
+		body.animator.animation_finished.connect(_on_animation_finished)
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "player_punch":

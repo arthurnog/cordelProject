@@ -38,17 +38,17 @@ func physics_update(delta: float) -> void:
 	if distance_to_player < body.safe_distance or distance_to_player < body.minimum_distance_to_player:
 		#AFASTA
 		body.movement.move(-direction,delta)
-		body.animator.play("nonato_comum/walk")
+		body.animator.play("minion_comum/walk")
 	elif distance_to_player > body.safe_distance:
 		#APROXIMA
 		body.movement.move(direction, delta)
-		body.animator.play("nonato_comum/walk")
+		body.animator.play("minion_comum/walk")
 	elif distance_to_player <= body.attack_range and body.can_attack:
 		#ATACA
 		transition.emit(self, "punch")
 
 	body.movement.move(direction, delta)
-	body.animator.play("nonato_comum/walk")
+	body.animator.play("minion_comum/walk")
 	
 func calculate_target_position() -> void:
 	if body.can_attack:

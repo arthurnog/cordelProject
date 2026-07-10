@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d32twcmfiw2jp" path="res://entities/player/player.tscn" id="5_nctt5"]
 [ext_resource type="Script" uid="uid://by7qt3mqhljjb" path="res://levels/camera_2d.gd" id="6_pwx0r"]
 [ext_resource type="PackedScene" uid="uid://81nn6f8ura3b" path="res://entities/enemies/minion.tscn" id="7_823r0"]
+[ext_resource type="Texture2D" uid="uid://dtrdguahpu444" path="res://assets/sprites/ui/barra_vida.png" id="8_0n54a"]
+[ext_resource type="Script" uid="uid://dl072wr3vehaj" path="res://scripts/gui/health_bar.gd" id="9_vtbmn"]
+[ext_resource type="Texture2D" uid="uid://dhd2c28v42nff" path="res://assets/sprites/ui/barra_vida_detalhe.png" id="10_ets4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nctt5"]
 size = Vector2(3880, 385)
@@ -50,7 +53,8 @@ polygon = PackedVector2Array(-3589.1892, 289.72974, -2929.7297, 289.72974, -2936
 
 [node name="Player" parent="." unique_id=889834335 instance=ExtResource("5_nctt5")]
 y_sort_enabled = true
-position = Vector2(364, 499)
+position = Vector2(363, 499)
+maxHealth = 30
 
 [node name="InvisibleWalls" type="Node" parent="." unique_id=1518793278]
 
@@ -97,5 +101,21 @@ shape = SubResource("RectangleShape2D_pwx0r")
 [node name="Minion" parent="." unique_id=681171501 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
 position = Vector2(698, 590)
 player = NodePath("../Player")
-safe_distance = 200.0
-attack_range = 60.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=690262167]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=1125379414 node_paths=PackedStringArray("player")]
+offset_left = 121.0
+offset_top = 1.0
+offset_right = 718.0
+offset_bottom = 220.0
+scale = Vector2(0.7, 0.7)
+texture_under = ExtResource("8_0n54a")
+texture_progress = ExtResource("8_0n54a")
+script = ExtResource("9_vtbmn")
+player = NodePath("../../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1251812819]
+position = Vector2(98.99999, 88.99999)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("10_ets4m")

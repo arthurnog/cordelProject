@@ -23,7 +23,7 @@ func on_receive_damage(amount: int) -> void:
 	is_hurt = true
 	movement.move(Vector2.ZERO, 0.0)
 	animator.stop()
-	animator.play("nonato_comum/damage")
+	animator.play("minion/damage")
 	if health <= 0:
 		queue_free()
 		return
@@ -31,5 +31,5 @@ func on_receive_damage(amount: int) -> void:
 	is_hurt = false
 
 func _on_damage_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "nonato_comum/damage":
+	if anim_name == "minion/damage":
 		is_hurt = false

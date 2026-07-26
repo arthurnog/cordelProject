@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://81nn6f8ura3b"]
 
 [ext_resource type="PackedScene" uid="uid://dl0okljgbin04" path="res://entities/entity.tscn" id="1_v1xey"]
-[ext_resource type="Texture2D" uid="uid://cn2yf8berr20q" path="res://assets/sprites/mc/spritesheet-nonato.png" id="2_blnf3"]
 [ext_resource type="Script" uid="uid://cjv1cjwcckgwh" path="res://scripts/entities/minion/minion.gd" id="2_seymj"]
+[ext_resource type="Texture2D" uid="uid://dslgldts0bgh2" path="res://assets/sprites/minion/spritesheet-minion.png" id="3_co0nr"]
 [ext_resource type="Script" uid="uid://b5awd442y6v0x" path="res://scripts/entities/minion/minion_movement.gd" id="4_d4ebh"]
 [ext_resource type="AnimationLibrary" uid="uid://dunma3t8usj65" path="res://assets/animations/nonato_comum.res" id="4_dl250"]
 [ext_resource type="Script" uid="uid://btm2o8031lewv" path="res://scripts/state_machine.gd" id="4_seymj"]
@@ -47,12 +47,147 @@ _data = {
 &"RESET": SubResource("Animation_co0nr")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxqmf"]
-radius = 31.0
-height = 168.0
+[sub_resource type="Animation" id="Animation_cgqiv"]
+resource_name = "damage"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_1ocoq"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DamageEmitter:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdhl"]
 size = Vector2(72, 23)
+
+[sub_resource type="Animation" id="Animation_b077y"]
+resource_name = "punch"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.4901161e-08, 0.15000004, 0.30000004, 0.45000005, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 9, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DamageEmitter/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.052627448, 0.10223033, 0.1554627, 0.25103897),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_tjdhl"), SubResource("RectangleShape2D_tjdhl"), SubResource("RectangleShape2D_tjdhl"), SubResource("RectangleShape2D_tjdhl")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DamageEmitter:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.050207794, 0.20264591, 0.25103897, 0.35110858),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2dig4"]
+resource_name = "walk"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../EntitySprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DamageEmitter:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orlog"]
+_data = {
+&"damage": SubResource("Animation_cgqiv"),
+&"idle": SubResource("Animation_1ocoq"),
+&"punch": SubResource("Animation_b077y"),
+&"walk": SubResource("Animation_2dig4")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxqmf"]
+radius = 31.0
+height = 168.0
 
 [node name="Minion" unique_id=889834335 instance=ExtResource("1_v1xey")]
 collision_layer = 8
@@ -66,11 +201,12 @@ speed = 100
 
 [node name="EntitySprite" parent="." index="0" unique_id=643993809]
 modulate = Color(0, 1, 1, 1)
-position = Vector2(-100, -202)
-texture = ExtResource("2_blnf3")
+position = Vector2(-97, -196.00002)
+scale = Vector2(0.7346154, 0.7346154)
+texture = ExtResource("3_co0nr")
 centered = false
-hframes = 5
-vframes = 5
+hframes = 4
+vframes = 4
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1261289332]
 position = Vector2(-8, -31)
@@ -79,7 +215,9 @@ shape = SubResource("CapsuleShape2D_e4p34")
 
 [node name="AnimationPlayer" parent="." index="2" unique_id=97044369]
 libraries/ = SubResource("AnimationLibrary_cgqiv")
+libraries/minion = SubResource("AnimationLibrary_orlog")
 libraries/nonato_comum = ExtResource("4_dl250")
+autoplay = &"RESET"
 
 [node name="Movement" type="Node" parent="." index="3" unique_id=1903526551 node_paths=PackedStringArray("source", "body")]
 script = ExtResource("4_d4ebh")

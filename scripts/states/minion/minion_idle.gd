@@ -29,7 +29,7 @@ func update(delta: float) -> void:
 		
 func physics_update(delta: float) -> void:
 	if(player_slot == null):
-		body.animator.play("nonato_comum/idle")
+		body.animator.play("minion/idle")
 		return
 	if body.is_hurt:
 		return
@@ -45,5 +45,5 @@ func physics_update(delta: float) -> void:
 			body.damage_emitter.scale.x = new_flip
 
 	body.movement.move(direction, delta)
-	body.animator.play("nonato_comum/walk")
+	body.animator.play("minion/walk")
 	

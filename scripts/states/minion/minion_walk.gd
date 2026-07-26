@@ -7,7 +7,7 @@ var state_timer: SceneTreeTimer
 
 func start() -> void:
 	body.movement.move(Vector2.ZERO, 0.0)
-	body.animator.play("nonato_comum/idle")
+	body.animator.play("minion/idle")
 	
 	# vira pro player uma vez só
 	var direction_to_player = body.player.position.x - body.global_position.x

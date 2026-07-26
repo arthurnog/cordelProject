@@ -105,3 +105,11 @@ player = NodePath("../Player")
 [node name="Minion3" parent="." unique_id=432060903 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
 position = Vector2(1893, 600)
 player = NodePath("../Player")
+
+[node name="Minion4" parent="." unique_id=682686647 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
+position = Vector2(1685, 490)
+player = NodePath("../Player")
+
+[node name="Minion5" parent="." unique_id=309154205 node_paths=PackedStringArray("player") instance=ExtResource("7_823r0")]
+position = Vector2(295, 631)
+player = NodePath("../Player")

@@ -13,9 +13,10 @@
 [ext_resource type="Script" uid="uid://ddccoywt0ufan" path="res://scripts/entities/movement.gd" id="9_ef06p"]
 [ext_resource type="Script" uid="uid://cglo34np66wjb" path="res://scripts/states/player/jump_air.gd" id="10_a1qjk"]
 [ext_resource type="Script" uid="uid://b27155er8puab" path="res://scripts/states/player/jump_land.gd" id="11_j3ovn"]
+[ext_resource type="PackedScene" uid="uid://t45kefd1thjn" path="res://entities/enemy_slot.tscn" id="14_afbqv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4p34"]
-height = 102.0
+height = 74.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdhl"]
 size = Vector2(72, 23)
@@ -88,5 +89,19 @@ position = Vector2(-0.38888478, -50.375565)
 scale = Vector2(0.6111111, 0.3257919)
 color = Color(0, 0, 0, 0.44705883)
 polygon = PackedVector2Array(-55, -94, 53, -94, 50, -81, 0.058817387, -69.44444, -54, -81)
+
+[node name="EnemySlots" type="Node2D" parent="." index="8" unique_id=1338622474]
+
+[node name="EnemySlot" parent="EnemySlots" index="0" unique_id=509284979 instance=ExtResource("14_afbqv")]
+position = Vector2(70, -66)
+
+[node name="EnemySlot2" parent="EnemySlots" index="1" unique_id=1314526938 instance=ExtResource("14_afbqv")]
+position = Vector2(72, -95)
+
+[node name="EnemySlot3" parent="EnemySlots" index="2" unique_id=1394785159 instance=ExtResource("14_afbqv")]
+position = Vector2(-78, -68)
+
+[node name="EnemySlot4" parent="EnemySlots" index="3" unique_id=1769561286 instance=ExtResource("14_afbqv")]
+position = Vector2(-80, -95)
 
 [editable path="DamageEmitter"]
